@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 
-const login = require("./controllers/userControllers");
+//const login = require("./controllers/userControllers");
 
 const app = express();
 
@@ -24,7 +24,7 @@ app.use(bodyParser.json());
   });
 });*/
 
-app.post("/login", (req, res) => {
+app.post("/register", (req, res) => {
   console.log(`in login`);
   // Récupérer les données du formulaire
   const name = req.body.name;
@@ -33,10 +33,24 @@ app.post("/login", (req, res) => {
   // Traitement des données du formulaire
   // ...
 
+  const login = async (req, res) => {
+    const user = new User({
+      name: req.body.name,
+      pseudo: req.body.pseudo,
+    });
+
+    user
+      .save()
+      .then(() =>
+        res.status(201).json({ message: "User register successfully" })
+      )
+      .catch((error) => res.status(400).json({ error }));
+  };
+  /*
   login(req, res).catch((error) => {
     console.error("Erreur lors de la connexion :", error);
     res.status(500).json({ message: "Erreur lors de la connexion" });
-  });
+  });*/
 });
 
 const port = 3000; // Port sur lequel le serveur sera écouté

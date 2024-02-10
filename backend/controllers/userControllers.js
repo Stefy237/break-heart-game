@@ -1,4 +1,3 @@
-const getDB = require("../db/conn");
 const User = require("../models/userModel");
 
 exports.login = async (req, res) => {
