@@ -1,4 +1,5 @@
 const db = require("./backend/db/conn");
+//require("./backend/index")
 
 var score = 0;
 var lives = 4;
