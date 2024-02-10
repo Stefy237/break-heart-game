@@ -19,7 +19,7 @@ app.post("/process-form", (req, res) => {
   // ...
 
   // Rediriger l'utilisateur vers une autre page
-  res.redirect("/rules.html");
+  res.redirect("../rules.html");
 });
 
 const port = 3000; // Port sur lequel le serveur sera écouté
