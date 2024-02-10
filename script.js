@@ -1,7 +1,34 @@
+const db = require("./backend/db/conn");
+
 var score = 0;
 var lives = 4;
 var dropTime = 20;
 var gameArea = document.getElementById("game-area");
+
+async function updateScore(score) {
+  const collection = db.collection("users");
+  var userame;
+
+  document.querySelector("form").addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    userame = document.getElementById("name").value;
+  });
+
+  try {
+    await collection.updateOne(
+      {
+        name: username,
+      },
+      {
+        $set: { score: score },
+      }
+    );
+  } catch (err) {
+    console.err(err);
+  } finally {
+  }
+}
 
 function createHeart() {
   var heart = document.createElement("div");
@@ -32,6 +59,11 @@ function createHeart() {
 
     if (lives === 0) {
       clearInterval(createHeart);
+
+      var p = document.createElement("p");
+      p.textContent = "Vous avez terminé avec un score de " + score;
+      document.getElementById("main-lost").appendChild(p);
+
       window.location.href = "lost-page.html";
     }
   }, dropTime);
