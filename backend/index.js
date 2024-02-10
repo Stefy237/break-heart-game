@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
+const User = require("../models/userModel");
 
 //const login = require("./controllers/userControllers");
 
@@ -33,19 +34,16 @@ app.post("/register", (req, res) => {
   // Traitement des données du formulaire
   // ...
 
-  const login = async (req, res) => {
-    const user = new User({
-      name: req.body.name,
-      pseudo: req.body.pseudo,
-    });
+  const user = new User({
+    name: req.body.name,
+    pseudo: req.body.pseudo,
+  });
 
-    user
-      .save()
-      .then(() =>
-        res.status(201).json({ message: "User register successfully" })
-      )
-      .catch((error) => res.status(400).json({ error }));
-  };
+  user
+    .save()
+    .then(() => res.status(201).json({ message: "User register successfully" }))
+    .catch((error) => res.status(400).json({ error }));
+
   /*
   login(req, res).catch((error) => {
     console.error("Erreur lors de la connexion :", error);
