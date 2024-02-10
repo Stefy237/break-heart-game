@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 });*/
 
 app.post("/login", (req, res) => {
+  console.log(`in login`);
   // Récupérer les données du formulaire
   const name = req.body.name;
   const pseudo = req.body.pseudo;
@@ -36,9 +37,6 @@ app.post("/login", (req, res) => {
     console.error("Erreur lors de la connexion :", error);
     res.status(500).json({ message: "Erreur lors de la connexion" });
   });
-  // Rediriger l'utilisateur vers une autre page
-  const rulesPath = path.join(__dirname, "../rules.html");
-  res.redirect(rulesPath);
 });
 
 const port = 3000; // Port sur lequel le serveur sera écouté
