@@ -1,6 +1,6 @@
-import { MongoClient } from "mongodb";
+const mongoose = require("mongoose");
 
-const userSchema = new MongoClient.Schema(
+const userSchema = mongoose.Schema(
   {
     name: {
       type: String,
