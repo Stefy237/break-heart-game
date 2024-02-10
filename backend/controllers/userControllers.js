@@ -2,7 +2,7 @@ const getDB = require("../db/conn");
 const User = require("../models/userModel");
 
 exports.login = async (req, res) => {
-  try {
+  /* try {
     const db = await getDB();
     const usersCollection = db.collection("users");
 
@@ -21,5 +21,15 @@ exports.login = async (req, res) => {
     res
       .status(500)
       .json({ message: "Erreur lors de l'enregistrement de l'utilisateur" });
-  }
+  }*/
+
+  const user = new User({
+    name: req.body.name,
+    pseudo: req.body.pseudo,
+  });
+
+  user
+    .save()
+    .then(() => res.status(201).json({ message: "User register successfully" }))
+    .catch((error) => res.status(400).json({ error }));
 };
